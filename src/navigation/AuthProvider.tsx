@@ -28,9 +28,13 @@ export const AuthProvider = ({children}: Props) => {
         },
         register: async (email: string, password: string) => {
           try {
-            await auth().createUserWithEmailAndPassword(email, password);
+            const createdUser = await auth().createUserWithEmailAndPassword(
+              email,
+              password,
+            );
+            return createdUser;
           } catch (e) {
-            console.log(e);
+            throw e;
           }
         },
         logout: async () => {

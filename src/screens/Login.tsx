@@ -6,7 +6,6 @@ import {AuthContext} from '../navigation/AuthProvider';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackHome} from '../navigation/routesTypes';
 import {useNavigation} from '@react-navigation/native';
-
 type Props = StackNavigationProp<RootStackHome, 'Login'>;
 
 export default function LoginScreen() {
@@ -34,7 +33,7 @@ export default function LoginScreen() {
       <TouchableOpacity
         style={styles.navButton}
         onPress={() => navigation.navigate('Signup')}>
-        <Text style={styles.navButtonText}>New user? Join here</Text>
+        <Text style={styles.navButtonText}>Novo Usuário? Cadastre-se aqui</Text>
       </TouchableOpacity>
     </View>
   );
