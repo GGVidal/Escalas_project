@@ -12,7 +12,7 @@ type Props = {
 export const AuthContext = createContext<IAuthContext>({});
 
 export const AuthProvider = ({children}: Props) => {
-  const [userAuth, setUserAuth] = useState<Object>();
+  const [userAuth, setUserAuth] = useState<any>();
 
   return (
     <AuthContext.Provider

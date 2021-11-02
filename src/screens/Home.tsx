@@ -7,32 +7,26 @@ import firestore from '@react-native-firebase/firestore';
 export default function HomeScreen() {
   const {userAuth, logout} = useContext(AuthContext);
   useEffect(() => {
-    const firestoreSignUp = () => {
-      console.log('GG user auth', userAuth);
-      firestore()
-        .collection('Users')
-        // Filter results
-        .get()
-        .then(querySnapshot => {
-          console.log('GG query', querySnapshot.docs);
-        });
-      /* ... */
-      // if (Object.keys(userAuth!).length > 0) {
-      //   firestore()
-      //     .collection('Users')
-      //     .add({
-      //       name: 'Ada Lovelace',
-      //       age: 30,
-      //     })
-      //     .then(() => {
-      //       console.log('User added!');
-      //     });
-      // }
+    const firestoreSignUp = async () => {
+      const {email, uid} = userAuth;
+      const data = await usersCollection();
+      const userExists = data.docs.find(user => user.data().email === email);
+      if (!userExists) {
+        firestore()
+          .collection('Users')
+          .add({
+            email,
+            uid,
+          })
+          .then(() => {
+            console.log('User added!');
+          });
+      }
     };
-    // const usersCollection = async () => {
-    //   const data = await firestore().collection('Users').doc('Teste').get();
-    //   console.log('GG data', data);
-    // };
+    const usersCollection = async () => {
+      const data = await firestore().collection('Users').get();
+      return data;
+    };
     firestoreSignUp();
   }, []);
   return (
