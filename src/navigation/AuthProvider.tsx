@@ -1,6 +1,7 @@
 import React, {createContext, useState, ReactNode} from 'react';
 import auth from '@react-native-firebase/auth';
 import {IAuthContext} from './typings';
+import {addValueCollection, getCollection} from '../services/firestore';
 
 /**
  * This provider is created
@@ -21,6 +22,7 @@ export const AuthProvider = ({children}: Props) => {
         setUserAuth,
         login: async (email: string, password: string) => {
           try {
+            console.log('GABRIel auth', auth());
             await auth().signInWithEmailAndPassword(email, password);
           } catch (e) {
             console.log(e);
@@ -32,7 +34,19 @@ export const AuthProvider = ({children}: Props) => {
               email,
               password,
             );
-            return createdUser;
+            if (createdUser) {
+              const {email: userEmail, uid: userUid} = createdUser.user;
+              const data = await getCollection('Users');
+              const userExists = data.docs.find(
+                user => user.data().email === userEmail,
+              );
+              if (!userExists) {
+                await addValueCollection('Users', {
+                  email: userEmail,
+                  uid: userUid,
+                });
+              }
+            }
           } catch (e) {
             throw e;
           }
