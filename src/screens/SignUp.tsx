@@ -7,26 +7,33 @@ import {AuthContext} from '../navigation/AuthProvider';
 export default function SignupScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
   const {register} = useContext(AuthContext);
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Create an account</Text>
+      <Text style={styles.text}>Crie sua conta</Text>
       <FormInput
         labelValue={email}
-        placeholderText="Email"
+        placeholderText="E-mail"
         onChangeText={userEmail => setEmail(userEmail)}
         keyboardType="email-address"
         autoCorrect={false}
       />
       <FormInput
+        labelValue={username}
+        placeholderText="Nome"
+        onChangeText={user => setUsername(user)}
+        autoCorrect={false}
+      />
+      <FormInput
         labelValue={password}
-        placeholderText="Password"
+        placeholderText="Senha"
         onChangeText={userPassword => setPassword(userPassword)}
         secureTextEntry={true}
       />
       <FormButton
-        buttonTitle="Signup"
-        onPress={() => register!(email, password)}
+        buttonTitle="Registrar-se"
+        onPress={() => register!(email, password, username)}
       />
     </View>
   );
