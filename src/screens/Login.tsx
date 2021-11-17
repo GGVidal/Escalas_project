@@ -1,7 +1,7 @@
 import React, {useState, useContext} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-import FormButton from '../components/FormButton';
-import FormInput from '../components/FormInput';
+import FormButton from '../components/FormButton/FormButton';
+import FormInput from '../components/FormInput/FormInput';
 import {AuthContext} from '../navigation/AuthProvider';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackHome} from '../navigation/routesTypes';

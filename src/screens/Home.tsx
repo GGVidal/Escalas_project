@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import FormButton from '../components/FormButton';
+import FormButton from '../components/FormButton/FormButton';
 import {AuthContext} from '../navigation/AuthProvider';
 
 export default function HomeScreen() {

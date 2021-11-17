@@ -1,11 +1,10 @@
 import React from 'react';
-import {KeyboardType, StyleSheet, TextInput} from 'react-native';
-import {windowHeight, windowWidth} from '../utils/Dimensions';
+import {KeyboardType} from 'react-native';
+import {TextInput} from './styles';
 
 type Props = {
   labelValue: string;
   placeholderText: string;
-  rest?: Object;
   onChangeText?: (userEmail: any) => void;
   keyboardType?: KeyboardType;
   autoCorrect?: boolean;
@@ -19,12 +18,10 @@ export default function FormInput({
   keyboardType,
   autoCorrect,
   secureTextEntry,
-  ...rest
 }: Props) {
   return (
     <TextInput
       value={labelValue}
-      style={styles.input}
       numberOfLines={1}
       placeholder={placeholderText}
       placeholderTextColor="#666"
@@ -32,20 +29,6 @@ export default function FormInput({
       keyboardType={keyboardType}
       autoCorrect={autoCorrect}
       secureTextEntry={secureTextEntry}
-      {...rest}
     />
   );
 }
-
-const styles = StyleSheet.create({
-  input: {
-    padding: 10,
-    marginTop: 5,
-    marginBottom: 10,
-    width: windowWidth / 1.5,
-    height: windowHeight / 15,
-    fontSize: 16,
-    borderRadius: 8,
-    borderWidth: 1,
-  },
-});
