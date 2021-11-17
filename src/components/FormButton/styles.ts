@@ -3,9 +3,9 @@ import styled from 'styled-components/native';
 import {windowHeight, windowWidth} from '../../utils/Dimensions';
 
 export const Container = styled.TouchableOpacity<TouchableOpacityProps>`
-  margin-top: 10;
-  width: ${windowWidth / 2};
-  height: ${windowHeight / 15};
+  margin-top: 10px;
+  width: ${windowWidth / 2 + 'px'};
+  height: ${windowHeight / 15 + 'px'};
   background-color: #6646ee;
   padding: 10px;
   align-items: center;

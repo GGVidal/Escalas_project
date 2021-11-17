@@ -18,14 +18,14 @@ export default function LoginScreen() {
       <Text style={styles.text}>Welcome to Firebase app</Text>
       <FormInput
         labelValue={email}
-        placeholderText="Email"
+        placeholderText="E-mail"
         onChangeText={userEmail => setEmail(userEmail)}
         keyboardType="email-address"
         autoCorrect={false}
       />
       <FormInput
         labelValue={password}
-        placeholderText="Password"
+        placeholderText="Senha"
         onChangeText={userPassword => setPassword(userPassword)}
         secureTextEntry={true}
       />
