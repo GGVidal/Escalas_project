@@ -22,6 +22,7 @@ export default function FormInput({
   return (
     <TextInput
       value={labelValue}
+      autoCapitalize="none"
       numberOfLines={1}
       placeholder={placeholderText}
       placeholderTextColor="#666"

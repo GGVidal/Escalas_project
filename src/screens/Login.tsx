@@ -15,7 +15,7 @@ export default function LoginScreen() {
   const navigation = useNavigation<Props>();
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Welcome to Firebase app</Text>
+      <Text style={styles.text}>Bem-vindo ao app de escalas!</Text>
       <FormInput
         labelValue={email}
         placeholderText="E-mail"

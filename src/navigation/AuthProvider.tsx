@@ -57,8 +57,8 @@ export const AuthProvider = ({children}: Props) => {
                 });
               }
             }
-          } catch (e) {
-            throw e;
+          } catch (error: any) {
+            throw error;
           }
         },
         logout: async () => {
