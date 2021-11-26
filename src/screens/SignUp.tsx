@@ -2,28 +2,37 @@ import React, {useState, useContext} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import FormButton from '../components/FormButton/FormButton';
 import FormInput from '../components/FormInput/FormInput';
-import {
-  ERROR_EMAIL_IN_USE,
-  ERROR_INVALID_EMAIL,
-} from '../constants/ErrorMessages';
+import {ErrosLogin} from '../constants/ErrorMessages';
 import {AuthContext} from '../navigation/AuthProvider';
+import {validateUsername} from '../utils/Validations';
+type ValidationErros =
+  | 'EMAIL_IN_USE'
+  | 'INVALID_EMAIL'
+  | 'WEAK_PASSWORD'
+  | null;
 
 export default function SignupScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
-  const [validateError, setValidateError] = useState('');
+  const [validateError, setValidateError] = useState<ValidationErros>(null);
   const {register} = useContext(AuthContext);
 
   const validateSignIn = async () => {
     try {
+      const data = await validateUsername(username);
+      console.log('GG', data);
       await register(email, password, username);
     } catch (error: any) {
       if (error.code === 'auth/email-already-in-use') {
-        setValidateError(ERROR_EMAIL_IN_USE);
+        console.log('GG ENTROU AQUI2');
+        setValidateError('EMAIL_IN_USE');
       }
       if (error.code === 'auth/invalid-email') {
-        setValidateError(ERROR_INVALID_EMAIL);
+        setValidateError('INVALID_EMAIL');
+      }
+      if (error.code === 'auth/weak-password') {
+        setValidateError('WEAK_PASSWORD');
       }
     }
   };
@@ -37,11 +46,15 @@ export default function SignupScreen() {
         keyboardType="email-address"
         autoCorrect={false}
       />
+      {validateError === 'EMAIL_IN_USE' || validateError === 'INVALID_EMAIL' ? (
+        <Text>{ErrosLogin[validateError]}</Text>
+      ) : null}
       <FormInput
         labelValue={username}
         placeholderText="Nome"
         onChangeText={user => setUsername(user)}
         autoCorrect={false}
+        secureTextEntry={false}
       />
       <FormInput
         labelValue={password}
@@ -49,6 +62,9 @@ export default function SignupScreen() {
         onChangeText={userPassword => setPassword(userPassword)}
         secureTextEntry={true}
       />
+      {validateError === 'WEAK_PASSWORD' && (
+        <Text>{ErrosLogin[validateError]}</Text>
+      )}
       <FormButton buttonTitle="Registrar-se" onPress={() => validateSignIn()} />
     </View>
   );

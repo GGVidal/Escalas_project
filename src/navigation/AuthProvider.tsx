@@ -58,6 +58,7 @@ export const AuthProvider = ({children}: Props) => {
               }
             }
           } catch (error: any) {
+            console.log(error);
             throw error;
           }
         },

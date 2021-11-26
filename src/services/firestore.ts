@@ -1,8 +1,12 @@
 import firestore from '@react-native-firebase/firestore';
 
 export const getCollection = async (collection: string) => {
-  const data = await firestore().collection(collection).get();
-  return data;
+  try {
+    const data = await firestore().collection(collection).get();
+    return data;
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 export const addValueCollection = async (
