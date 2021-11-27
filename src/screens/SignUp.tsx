@@ -4,7 +4,6 @@ import FormButton from '../components/FormButton/FormButton';
 import FormInput from '../components/FormInput/FormInput';
 import {ErrosLogin} from '../constants/ErrorMessages';
 import {AuthContext} from '../navigation/AuthProvider';
-import {validateUsername} from '../utils/Validations';
 type ValidationErros =
   | 'EMAIL_IN_USE'
   | 'INVALID_EMAIL'
@@ -20,8 +19,6 @@ export default function SignupScreen() {
 
   const validateSignIn = async () => {
     try {
-      const data = await validateUsername(username);
-      console.log('GG', data);
       await register(email, password, username);
     } catch (error: any) {
       if (error.code === 'auth/email-already-in-use') {

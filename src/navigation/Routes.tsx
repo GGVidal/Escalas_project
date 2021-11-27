@@ -1,11 +1,13 @@
 import React, {useContext, useState, useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
+import {createStackNavigator} from '@react-navigation/stack';
 import AuthStack from './AuthStack';
 import HomeStack from './HomeStack';
 import {AuthContext} from './AuthProvider';
 import Loading from '../components/Loading/Loading';
-
+import {RootStack} from './routesTypes';
+const Stack = createStackNavigator<RootStack>();
 export default function Routes() {
   const {userAuth, setUserAuth} = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
@@ -31,7 +33,10 @@ export default function Routes() {
 
   return (
     <NavigationContainer>
-      {userAuth ? <HomeStack /> : <AuthStack />}
+      <Stack.Navigator initialRouteName="Auth">
+        <Stack.Screen name="Auth" component={AuthStack} />
+        <Stack.Screen name="HomeScreen" component={HomeStack} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }

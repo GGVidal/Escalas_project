@@ -30,33 +30,39 @@ export const AuthProvider = ({children}: Props) => {
         },
         register: async (email: string, password: string, username: string) => {
           try {
-            const createdUser = await auth().createUserWithEmailAndPassword(
-              email,
-              password,
-            );
-            auth().onAuthStateChanged(user => {
-              if (user) {
-                user
+            auth()
+              .createUserWithEmailAndPassword(email, password)
+              .then(user => {
+                user.user
                   .updateProfile({
                     displayName: username,
                   })
-                  .then();
-              }
-            });
-            if (createdUser) {
-              const {email: userEmail, uid: userUid} = createdUser.user;
-              const data = await getCollection(CollectionNames.USERS);
-              const userExists = data.docs.find(
-                user => user.data().email === userEmail,
-              );
-              if (!userExists) {
-                await addValueCollection(CollectionNames.USERS, {
-                  email: userEmail,
-                  uid: userUid,
-                  username,
-                });
-              }
-            }
+                  .then(async userProfile => {
+                    console.log('ADDED DISPLAY NAME', userProfile);
+                    if (user) {
+                      console.log('THEN USER', user);
+                      const {email: userEmail, uid: userUid} = user.user;
+                      const data = await getCollection(CollectionNames.USERS);
+                      const userExists = data.docs.find(
+                        userFind => userFind.data().email === userEmail,
+                      );
+                      if (!userExists) {
+                        await addValueCollection(CollectionNames.USERS, {
+                          email: userEmail,
+                          uid: userUid,
+                          username,
+                        });
+                      }
+                    }
+                  })
+                  .catch(err => {
+                    console.log('ERROR UPDATE PROFILE', err);
+                  });
+              })
+              .catch(err => {
+                console.log(err);
+                throw err;
+              });
           } catch (error: any) {
             console.log(error);
             throw error;

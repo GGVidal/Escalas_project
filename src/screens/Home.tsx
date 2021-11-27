@@ -5,7 +5,6 @@ import {AuthContext} from '../navigation/AuthProvider';
 
 export default function HomeScreen() {
   const {userAuth, logout} = useContext(AuthContext);
-  console.log('GG user', userAuth);
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Welcome user {userAuth?.displayName}</Text>
