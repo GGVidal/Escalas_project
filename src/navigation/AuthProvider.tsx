@@ -25,6 +25,7 @@ export const AuthProvider = ({children}: Props) => {
             await auth().signInWithEmailAndPassword(email, password);
           } catch (e) {
             console.log(e);
+            throw e;
           }
         },
         register: async (email, password, username) => {
@@ -42,7 +43,7 @@ export const AuthProvider = ({children}: Props) => {
             if (createdUser) {
               const {email: userEmail, uid: userUid} = createdUser.user;
               const data = await getCollection(CollectionNames.USERS);
-              const userExists = data.docs.find(
+              const userExists = data?.docs.find(
                 user => user.data().email === userEmail,
               );
               if (!userExists) {

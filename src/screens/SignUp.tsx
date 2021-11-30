@@ -2,13 +2,13 @@ import React, {useState, useContext} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import FormButton from '../components/FormButton/FormButton';
 import FormInput from '../components/FormInput/FormInput';
-import {ErrosLogin} from '../constants/ErrorMessages';
+import {ErrorsSignup} from '../constants/ErrorMessages';
 import {AuthContext} from '../navigation/AuthProvider';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStack} from '../navigation/routesTypes';
 import {useNavigation} from '@react-navigation/native';
 type Props = StackNavigationProp<RootStack, 'Auth'>;
-type ValidationErros =
+type ValidationErrors =
   | 'EMAIL_IN_USE'
   | 'INVALID_EMAIL'
   | 'WEAK_PASSWORD'
@@ -18,7 +18,7 @@ export default function SignupScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
-  const [validateError, setValidateError] = useState<ValidationErros>(null);
+  const [validateError, setValidateError] = useState<ValidationErrors>(null);
   const {register, loading} = useContext(AuthContext);
   const navigation = useNavigation<Props>();
   const validateSignIn = async () => {
@@ -29,7 +29,6 @@ export default function SignupScreen() {
       }
     } catch (error: any) {
       if (error.code === 'auth/email-already-in-use') {
-        console.log('GG ENTROU AQUI2');
         setValidateError('EMAIL_IN_USE');
       }
       if (error.code === 'auth/invalid-email') {
@@ -51,7 +50,7 @@ export default function SignupScreen() {
         autoCorrect={false}
       />
       {validateError === 'EMAIL_IN_USE' || validateError === 'INVALID_EMAIL' ? (
-        <Text>{ErrosLogin[validateError]}</Text>
+        <Text>{ErrorsSignup[validateError]}</Text>
       ) : null}
       <FormInput
         labelValue={username}
@@ -67,7 +66,7 @@ export default function SignupScreen() {
         secureTextEntry={true}
       />
       {validateError === 'WEAK_PASSWORD' && (
-        <Text>{ErrosLogin[validateError]}</Text>
+        <Text>{ErrorsSignup[validateError]}</Text>
       )}
       <FormButton buttonTitle="Registrar-se" onPress={() => validateSignIn()} />
     </View>

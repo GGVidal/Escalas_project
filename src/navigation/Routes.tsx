@@ -9,7 +9,7 @@ import Loading from '../components/Loading/Loading';
 import {RootStack} from './routesTypes';
 const Stack = createStackNavigator<RootStack>();
 export default function Routes() {
-  const {userAuth, setUserAuth} = useContext(AuthContext);
+  const {setUserAuth} = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
   const [initializing, setInitializing] = useState(true);
 

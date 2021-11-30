@@ -6,13 +6,41 @@ import {AuthContext} from '../navigation/AuthProvider';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStack} from '../navigation/routesTypes';
 import {useNavigation} from '@react-navigation/native';
+import {ErrorsLogin} from '../constants/ErrorMessages';
 type Props = StackNavigationProp<RootStack, 'Auth'>;
+type ValidationErrors =
+  | 'USER_DISABLED'
+  | 'INVALID_EMAIL'
+  | 'USER_NOT_FOUND'
+  | 'WRONG_PASSWORD'
+  | null;
 
 export default function LoginScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [validateError, setValidateError] = useState<ValidationErrors>(null);
   const {login} = useContext(AuthContext);
   const navigation = useNavigation<Props>();
+
+  const validateLogin = async () => {
+    try {
+      await login!(email, password);
+    } catch (error: any) {
+      if (error.code === 'auth/invalid-email') {
+        setValidateError('INVALID_EMAIL');
+      }
+      if (error.code === 'auth/user-disabled') {
+        setValidateError('USER_DISABLED');
+      }
+      if (error.code === 'auth/user-not-found') {
+        setValidateError('USER_NOT_FOUND');
+      }
+      if (error.code === 'auth/wrong-password') {
+        setValidateError('WRONG_PASSWORD');
+      }
+      console.log(error);
+    }
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Bem-vindo ao app de escalas!</Text>
@@ -23,13 +51,21 @@ export default function LoginScreen() {
         keyboardType="email-address"
         autoCorrect={false}
       />
+      {validateError === 'INVALID_EMAIL' ||
+      validateError === 'USER_DISABLED' ||
+      validateError === 'USER_NOT_FOUND' ? (
+        <Text>{ErrorsLogin[validateError]}</Text>
+      ) : null}
       <FormInput
         labelValue={password}
         placeholderText="Senha"
         onChangeText={userPassword => setPassword(userPassword)}
         secureTextEntry={true}
       />
-      <FormButton buttonTitle="Login" onPress={() => login!(email, password)} />
+      {validateError === 'WRONG_PASSWORD' && (
+        <Text>{ErrorsLogin[validateError]}</Text>
+      )}
+      <FormButton buttonTitle="Login" onPress={() => validateLogin()} />
       <TouchableOpacity
         style={styles.navButton}
         onPress={() => navigation.navigate('Auth', {screen: 'Signup'})}>
