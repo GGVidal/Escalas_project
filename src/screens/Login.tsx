@@ -4,9 +4,9 @@ import FormButton from '../components/FormButton/FormButton';
 import FormInput from '../components/FormInput/FormInput';
 import {AuthContext} from '../navigation/AuthProvider';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {RootStackHome} from '../navigation/routesTypes';
+import {RootStack} from '../navigation/routesTypes';
 import {useNavigation} from '@react-navigation/native';
-type Props = StackNavigationProp<RootStackHome, 'Login'>;
+type Props = StackNavigationProp<RootStack, 'Auth'>;
 
 export default function LoginScreen() {
   const [email, setEmail] = useState('');
@@ -32,7 +32,7 @@ export default function LoginScreen() {
       <FormButton buttonTitle="Login" onPress={() => login!(email, password)} />
       <TouchableOpacity
         style={styles.navButton}
-        onPress={() => navigation.navigate('Signup')}>
+        onPress={() => navigation.navigate('Auth', {screen: 'Signup'})}>
         <Text style={styles.navButtonText}>Novo Usuário? Cadastre-se aqui</Text>
       </TouchableOpacity>
     </View>

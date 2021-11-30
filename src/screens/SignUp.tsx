@@ -4,6 +4,10 @@ import FormButton from '../components/FormButton/FormButton';
 import FormInput from '../components/FormInput/FormInput';
 import {ErrosLogin} from '../constants/ErrorMessages';
 import {AuthContext} from '../navigation/AuthProvider';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {RootStack} from '../navigation/routesTypes';
+import {useNavigation} from '@react-navigation/native';
+type Props = StackNavigationProp<RootStack, 'Auth'>;
 type ValidationErros =
   | 'EMAIL_IN_USE'
   | 'INVALID_EMAIL'
@@ -15,11 +19,14 @@ export default function SignupScreen() {
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
   const [validateError, setValidateError] = useState<ValidationErros>(null);
-  const {register} = useContext(AuthContext);
-
+  const {register, loading} = useContext(AuthContext);
+  const navigation = useNavigation<Props>();
   const validateSignIn = async () => {
     try {
       await register(email, password, username);
+      if (!loading) {
+        await navigation.navigate('Auth', {screen: 'Login'});
+      }
     } catch (error: any) {
       if (error.code === 'auth/email-already-in-use') {
         console.log('GG ENTROU AQUI2');

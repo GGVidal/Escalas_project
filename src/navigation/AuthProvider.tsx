@@ -3,7 +3,6 @@ import auth from '@react-native-firebase/auth';
 import {IAuthContext} from './typings';
 import {CollectionNames} from '../constants/FirestoreCollections';
 import {addValueCollection, getCollection} from '../services/firestore';
-
 /**
  * This provider is created
  * to access user in whole app
@@ -15,7 +14,7 @@ export const AuthContext = createContext<IAuthContext>({});
 
 export const AuthProvider = ({children}: Props) => {
   const [userAuth, setUserAuth] = useState<any>();
-
+  const [loading, setLoading] = useState<boolean>();
   return (
     <AuthContext.Provider
       value={{
@@ -28,43 +27,36 @@ export const AuthProvider = ({children}: Props) => {
             console.log(e);
           }
         },
-        register: async (email: string, password: string, username: string) => {
+        register: async (email, password, username) => {
           try {
-            auth()
-              .createUserWithEmailAndPassword(email, password)
-              .then(user => {
-                user.user
-                  .updateProfile({
-                    displayName: username,
-                  })
-                  .then(async userProfile => {
-                    console.log('ADDED DISPLAY NAME', userProfile);
-                    if (user) {
-                      console.log('THEN USER', user);
-                      const {email: userEmail, uid: userUid} = user.user;
-                      const data = await getCollection(CollectionNames.USERS);
-                      const userExists = data.docs.find(
-                        userFind => userFind.data().email === userEmail,
-                      );
-                      if (!userExists) {
-                        await addValueCollection(CollectionNames.USERS, {
-                          email: userEmail,
-                          uid: userUid,
-                          username,
-                        });
-                      }
-                    }
-                  })
-                  .catch(err => {
-                    console.log('ERROR UPDATE PROFILE', err);
-                  });
-              })
-              .catch(err => {
-                console.log(err);
-                throw err;
-              });
+            setLoading(true);
+            const createdUser = await auth().createUserWithEmailAndPassword(
+              email,
+              password,
+            );
+            auth().onAuthStateChanged(user => {
+              if (user) {
+                user.updateProfile({displayName: username}).then();
+              }
+            });
+            if (createdUser) {
+              const {email: userEmail, uid: userUid} = createdUser.user;
+              const data = await getCollection(CollectionNames.USERS);
+              const userExists = data.docs.find(
+                user => user.data().email === userEmail,
+              );
+              if (!userExists) {
+                await addValueCollection(CollectionNames.USERS, {
+                  email: userEmail,
+                  uid: userUid,
+                  username,
+                });
+                setLoading(false);
+              }
+            }
           } catch (error: any) {
             console.log(error);
+            setLoading(false);
             throw error;
           }
         },
@@ -75,6 +67,8 @@ export const AuthProvider = ({children}: Props) => {
             console.error(e);
           }
         },
+        loading,
+        setLoading,
       }}>
       {children}
     </AuthContext.Provider>

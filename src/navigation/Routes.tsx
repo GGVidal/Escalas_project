@@ -34,8 +34,16 @@ export default function Routes() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Auth">
-        <Stack.Screen name="Auth" component={AuthStack} />
-        <Stack.Screen name="HomeScreen" component={HomeStack} />
+        <Stack.Screen
+          name="Auth"
+          component={AuthStack}
+          options={{header: () => null}}
+        />
+        <Stack.Screen
+          name="HomeScreen"
+          component={HomeStack}
+          options={{header: () => null}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

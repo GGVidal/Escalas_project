@@ -6,4 +6,6 @@ export interface IAuthContext {
   login?: (email: string, password: string) => void;
   register: (email: string, password: string, username: string) => void;
   logout?: () => void;
+  loading?: boolean;
+  setLoading?: React.Dispatch<React.SetStateAction<any>>;
 }
