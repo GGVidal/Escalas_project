@@ -21,10 +21,13 @@ export const AuthProvider = ({children}: Props) => {
         userAuth,
         setUserAuth,
         login: async (email: string, password: string) => {
+          setLoading(true);
           try {
             await auth().signInWithEmailAndPassword(email, password);
+            setLoading(false);
           } catch (e) {
             console.log(e);
+            setLoading(false);
             throw e;
           }
         },

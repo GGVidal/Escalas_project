@@ -19,12 +19,16 @@ export default function LoginScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [validateError, setValidateError] = useState<ValidationErrors>(null);
-  const {login} = useContext(AuthContext);
+  const {login, loading} = useContext(AuthContext);
   const navigation = useNavigation<Props>();
 
   const validateLogin = async () => {
     try {
+      const {navigate} = navigation;
       await login!(email, password);
+      if (!loading) {
+        navigate('HomeScreen', {screen: 'Home'});
+      }
     } catch (error: any) {
       if (error.code === 'auth/invalid-email') {
         setValidateError('INVALID_EMAIL');
