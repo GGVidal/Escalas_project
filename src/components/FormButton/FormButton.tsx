@@ -1,5 +1,4 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
 import {Container, Text} from './styles';
 
 type Props = {
@@ -10,14 +9,7 @@ type Props = {
 export default function FormButton({buttonTitle, onPress}: Props) {
   return (
     <Container onPress={onPress}>
-      <Text style={styles.buttonText}>{buttonTitle}</Text>
+      <Text>{buttonTitle}</Text>
     </Container>
   );
 }
-
-const styles = StyleSheet.create({
-  buttonText: {
-    fontSize: 28,
-    color: '#ffffff',
-  },
-});
