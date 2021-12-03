@@ -1,11 +1,11 @@
 import React, {useState, useContext} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import FormButton from '../components/FormButton/FormButton';
-import FormInput from '../components/FormInput/FormInput';
-import {ErrorsSignup} from '../constants/ErrorMessages';
-import {AuthContext} from '../navigation/AuthProvider';
+import FormButton from '../../components/FormButton/FormButton';
+import FormInput from '../../components/FormInput/FormInput';
+import {ErrorsSignup} from '../../constants/ErrorMessages';
+import {AuthContext} from '../../navigation/AuthProvider';
+import {Container, Text} from './styles';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {RootStack} from '../navigation/routesTypes';
+import {RootStack} from '../../navigation/routesTypes';
 import {useNavigation} from '@react-navigation/native';
 type Props = StackNavigationProp<RootStack, 'Auth'>;
 type ValidationErrors =
@@ -40,8 +40,8 @@ export default function SignupScreen() {
     }
   };
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Crie sua conta</Text>
+    <Container>
+      <Text>Crie sua conta</Text>
       <FormInput
         labelValue={email}
         placeholderText="E-mail"
@@ -69,19 +69,6 @@ export default function SignupScreen() {
         <Text>{ErrorsSignup[validateError]}</Text>
       )}
       <FormButton buttonTitle="Registrar-se" onPress={() => validateSignIn()} />
-    </View>
+    </Container>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#f5f5f5',
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  text: {
-    fontSize: 24,
-    marginBottom: 10,
-  },
-});

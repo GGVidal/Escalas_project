@@ -1,5 +1,4 @@
 import React, {useState, useContext} from 'react';
-import {StyleSheet, TouchableOpacity} from 'react-native';
 import FormButton from '../../components/FormButton/FormButton';
 import FormInput from '../../components/FormInput/FormInput';
 import {AuthContext} from '../../navigation/AuthProvider';
@@ -79,12 +78,3 @@ export default function LoginScreen() {
     </Container>
   );
 }
-const styles = StyleSheet.create({
-  navButton: {
-    marginTop: 15,
-  },
-  navButtonText: {
-    fontSize: 20,
-    color: '#6646ee',
-  },
-});
