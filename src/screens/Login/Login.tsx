@@ -59,7 +59,7 @@ export default function LoginScreen() {
       {validateError === 'INVALID_EMAIL' ||
       validateError === 'USER_DISABLED' ||
       validateError === 'USER_NOT_FOUND' ? (
-        <Text>{ErrorsLogin[validateError]}</Text>
+        <Text hasError>{ErrorsLogin[validateError]}</Text>
       ) : null}
       <FormInput
         labelValue={password}
@@ -68,7 +68,7 @@ export default function LoginScreen() {
         secureTextEntry={true}
       />
       {validateError === 'WRONG_PASSWORD' && (
-        <Text>{ErrorsLogin[validateError]}</Text>
+        <Text hasError>{ErrorsLogin[validateError]}</Text>
       )}
       <FormButton buttonTitle="Login" onPress={() => validateLogin()} />
       <SignUpButton

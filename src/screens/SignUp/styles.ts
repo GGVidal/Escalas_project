@@ -15,5 +15,5 @@ export const Container = styled.View<ViewProps>`
 export const Text = styled.Text<IText>`
   font-size: 18px;
   margin-bottom: 5px;
-  color: ${({hasError}) => (hasError ? 'red' : 'white')}; ;
+  color: ${({hasError}) => (hasError ? 'red' : 'black')}; ;
 `;
