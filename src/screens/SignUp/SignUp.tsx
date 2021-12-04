@@ -50,7 +50,7 @@ export default function SignupScreen() {
         autoCorrect={false}
       />
       {validateError === 'EMAIL_IN_USE' || validateError === 'INVALID_EMAIL' ? (
-        <Text>{ErrorsSignup[validateError]}</Text>
+        <Text hasError>{ErrorsSignup[validateError]}</Text>
       ) : null}
       <FormInput
         labelValue={username}
@@ -66,7 +66,7 @@ export default function SignupScreen() {
         secureTextEntry={true}
       />
       {validateError === 'WEAK_PASSWORD' && (
-        <Text>{ErrorsSignup[validateError]}</Text>
+        <Text hasError>{ErrorsSignup[validateError]}</Text>
       )}
       <FormButton buttonTitle="Registrar-se" onPress={() => validateSignIn()} />
     </Container>
