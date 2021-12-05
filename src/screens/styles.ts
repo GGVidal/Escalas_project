@@ -3,6 +3,7 @@ import styled from 'styled-components/native';
 
 export interface IText extends TextProps {
   hasError?: boolean;
+  isTitle?: boolean;
 }
 
 export const Container = styled.View<ViewProps>`
@@ -13,7 +14,7 @@ export const Container = styled.View<ViewProps>`
 `;
 
 export const Text = styled.Text<IText>`
-  font-size: 18px;
+  font-size: ${({isTitle}) => (isTitle ? '24px' : '18px')};
   margin-bottom: 5px;
-  color: ${({hasError}) => (hasError ? 'red' : 'black')}; ;
+  color: ${({hasError}) => (hasError ? 'red' : 'black')};
 `;

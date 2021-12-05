@@ -41,7 +41,7 @@ export default function SignupScreen() {
   };
   return (
     <Container>
-      <Text>Crie sua conta</Text>
+      <Text isTitle>Crie sua conta</Text>
       <FormInput
         labelValue={email}
         placeholderText="E-mail"

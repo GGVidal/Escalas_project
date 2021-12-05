@@ -48,7 +48,7 @@ export default function LoginScreen() {
   };
   return (
     <Container>
-      <Text>Bem-vindo ao app de escalas!</Text>
+      <Text isTitle>Bem-vindo ao app de escalas!</Text>
       <FormInput
         labelValue={email}
         placeholderText="E-mail"
