@@ -63,7 +63,7 @@ export default function LoginScreen() {
             ) : null}
             <FormInput
                 labelValue={password}
-                placeholderText="Senha2"
+                placeholderText="Senha"
                 onChangeText={(userPassword) => setPassword(userPassword)}
                 secureTextEntry={true}
             />
