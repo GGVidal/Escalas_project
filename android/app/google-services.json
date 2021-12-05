@@ -1,48 +1,48 @@
 {
-  "project_info": {
-    "project_number": "21918629567",
-    "firebase_url": "https://react-chat-firebase-6c6a0.firebaseio.com",
-    "project_id": "react-chat-firebase-6c6a0",
-    "storage_bucket": "react-chat-firebase-6c6a0.appspot.com"
-  },
-  "client": [
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:21918629567:android:3d4a50045e299004eb100a",
-        "android_client_info": {
-          "package_name": "com.escalas_project"
-        }
-      },
-      "oauth_client": [
+    "project_info": {
+        "project_number": "21918629567",
+        "firebase_url": "https://react-chat-firebase-6c6a0.firebaseio.com",
+        "project_id": "react-chat-firebase-6c6a0",
+        "storage_bucket": "react-chat-firebase-6c6a0.appspot.com"
+    },
+    "client": [
         {
-          "client_id": "21918629567-t88bebbcgdqmpk3k7alg492lb180qbnl.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.escalas_project",
-            "certificate_hash": "9884dbf2c7c2fa0d9e72a363291a55a58591eb22"
-          }
-        },
-        {
-          "client_id": "21918629567-vm22kgn2j23843tiov9q2potublehvcc.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDc-GJ15AtDt6wI-PyJ8EH5lw4FKh-pgvg"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "21918629567-vm22kgn2j23843tiov9q2potublehvcc.apps.googleusercontent.com",
-              "client_type": 3
+            "client_info": {
+                "mobilesdk_app_id": "1:21918629567:android:3d4a50045e299004eb100a",
+                "android_client_info": {
+                    "package_name": "com.escalas_project"
+                }
+            },
+            "oauth_client": [
+                {
+                    "client_id": "21918629567-t88bebbcgdqmpk3k7alg492lb180qbnl.apps.googleusercontent.com",
+                    "client_type": 1,
+                    "android_info": {
+                        "package_name": "com.escalas_project",
+                        "certificate_hash": "9884dbf2c7c2fa0d9e72a363291a55a58591eb22"
+                    }
+                },
+                {
+                    "client_id": "21918629567-vm22kgn2j23843tiov9q2potublehvcc.apps.googleusercontent.com",
+                    "client_type": 3
+                }
+            ],
+            "api_key": [
+                {
+                    "current_key": "AIzaSyDc-GJ15AtDt6wI-PyJ8EH5lw4FKh-pgvg"
+                }
+            ],
+            "services": {
+                "appinvite_service": {
+                    "other_platform_oauth_client": [
+                        {
+                            "client_id": "21918629567-vm22kgn2j23843tiov9q2potublehvcc.apps.googleusercontent.com",
+                            "client_type": 3
+                        }
+                    ]
+                }
             }
-          ]
         }
-      }
-    }
-  ],
-  "configuration_version": "1"
+    ],
+    "configuration_version": "1"
 }

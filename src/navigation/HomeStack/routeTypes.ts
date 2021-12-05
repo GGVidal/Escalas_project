@@ -1,3 +1,3 @@
 export type RootHomeStack = {
-  Home: undefined;
+    Home: undefined;
 };
