@@ -73,11 +73,6 @@
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
-    },
-    "husky": {
-      "hooks": {
-      "pre-commit": "pretty-quick --staged && yarn lint"
-      }
     }
   }
 }
