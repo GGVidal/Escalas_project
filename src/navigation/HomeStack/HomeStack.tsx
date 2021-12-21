@@ -7,7 +7,11 @@ const Stack = createStackNavigator<RootHomeStack>();
 export default function HomeStack() {
     return (
         <Stack.Navigator>
-            <Stack.Screen name="Home" component={HomeScreen} />
+            <Stack.Screen
+                options={{ headerLeft: () => null }}
+                name="Home"
+                component={HomeScreen}
+            />
         </Stack.Navigator>
     );
 }

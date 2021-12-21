@@ -26,10 +26,13 @@ export default function LoginScreen() {
 
     const validateLogin = async () => {
         try {
-            const { navigate } = navigation;
+            const { reset } = navigation;
             await login!(email, password);
             if (!loading) {
-                navigate('HomeScreen', { screen: 'Home' });
+                reset({
+                    index: 0,
+                    routes: [{ name: 'HomeScreen' }]
+                });
             }
         } catch (error: any) {
             if (error.code === 'auth/invalid-email') {
