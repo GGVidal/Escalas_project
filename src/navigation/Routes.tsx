@@ -7,7 +7,6 @@ import HomeStack from './HomeStack';
 import { AuthContext } from './AuthProvider';
 import Loading from '../components/Loading/Loading';
 import { RootStack } from './routesTypes';
-import { getHeaderTitle } from './utils/getRouteName';
 const Stack = createStackNavigator<RootStack>();
 export default function Routes() {
     const { setUserAuth } = useContext(AuthContext);
