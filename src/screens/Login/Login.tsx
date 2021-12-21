@@ -8,6 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 import { ErrorsLogin } from '../../constants/ErrorMessages';
 import { Container, Text } from './styles';
 import SignUpButton from './components/SignUpButton';
+import Loader from '../../components/Loader/Loader';
 type Props = StackNavigationProp<RootStack, 'Auth'>;
 type ValidationErrors =
     | 'USER_DISABLED'
@@ -78,6 +79,7 @@ export default function LoginScreen() {
             >
                 Novo Usuário? Cadastre-se aqui
             </SignUpButton>
+            {loading && <Loader loading={loading} />}
         </Container>
     );
 }
