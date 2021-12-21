@@ -7,6 +7,7 @@ import { Container, Text } from './styles';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStack } from '../../navigation/routesTypes';
 import { useNavigation } from '@react-navigation/native';
+import Loader from '../../components/Loader/Loader';
 type Props = StackNavigationProp<RootStack, 'Auth'>;
 type ValidationErrors =
     | 'EMAIL_IN_USE'
@@ -73,6 +74,7 @@ export default function SignupScreen() {
                 buttonTitle="Registrar-se"
                 onPress={() => validateSignIn()}
             />
+            {loading && <Loader loading={loading} />}
         </Container>
     );
 }

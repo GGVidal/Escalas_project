@@ -5,7 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import AuthStack from './AuthStack';
 import HomeStack from './HomeStack';
 import { AuthContext } from './AuthProvider';
-import Loading from '../components/Loading/Loading';
+import Loader from '../components/Loader/Loader';
 import { RootStack } from './routesTypes';
 const Stack = createStackNavigator<RootStack>();
 export default function Routes() {
@@ -26,10 +26,6 @@ export default function Routes() {
         const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
         return subscriber; // unsubscribe on unmount
     });
-
-    if (loading) {
-        return <Loading />;
-    }
 
     return (
         <NavigationContainer>
