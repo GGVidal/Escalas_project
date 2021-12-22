@@ -14,7 +14,7 @@ export const Container = styled.View<ViewProps>`
 `;
 
 export const Text = styled.Text<IText>`
-    font-size: ${({ isTitle }) => (isTitle ? '24px' : '18px')};
+    font-size: ${({ isTitle }) => (isTitle ? '32px' : '18px')};
     margin-bottom: 5px;
     color: ${({ hasError }) => (hasError ? 'red' : 'black')};
 `;

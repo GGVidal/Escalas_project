@@ -1,4 +1,4 @@
-import { ViewProps } from 'react-native';
+import { TextProps, ViewProps } from 'react-native';
 import styled from 'styled-components/native';
 import {
     Container as ContainerDefault,
@@ -6,6 +6,11 @@ import {
     IText
 } from '../styles';
 
-export const Container = styled(ContainerDefault)<ViewProps>``;
+export const Container = styled(ContainerDefault)<ViewProps>`
+    margin-bottom: 70px;
+`;
 
-export const Text = styled(TextDefault)<IText>``;
+export const Text = styled(TextDefault)<IText>`
+    align-self: center;
+    margin-top: 30px;
+`;

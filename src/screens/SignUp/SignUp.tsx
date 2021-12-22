@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import FormButton from '../../components/FormButton/FormButton';
 import FormInput from '../../components/FormInput/FormInput';
+import { Label } from '../../components/Label/styles';
 import { ErrorsSignup } from '../../constants/ErrorMessages';
 import { AuthContext } from '../../navigation/AuthProvider';
 import { Container, Text } from './styles';
@@ -8,6 +9,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStack } from '../../navigation/routesTypes';
 import { useNavigation } from '@react-navigation/native';
 import Loader from '../../components/Loader/Loader';
+import { View } from 'react-native';
 type Props = StackNavigationProp<RootStack, 'Auth'>;
 type ValidationErrors =
     | 'EMAIL_IN_USE'
@@ -41,40 +43,55 @@ export default function SignupScreen() {
         }
     };
     return (
-        <Container>
+        <>
             <Text isTitle>Crie sua conta</Text>
-            <FormInput
-                labelValue={email}
-                placeholderText="E-mail"
-                onChangeText={(userEmail) => setEmail(userEmail)}
-                keyboardType="email-address"
-                autoCorrect={false}
-            />
-            {validateError === 'EMAIL_IN_USE' ||
-            validateError === 'INVALID_EMAIL' ? (
-                <Text hasError>{ErrorsSignup[validateError]}</Text>
-            ) : null}
-            <FormInput
-                labelValue={username}
-                placeholderText="Nome"
-                onChangeText={(user) => setUsername(user)}
-                autoCorrect={false}
-                secureTextEntry={false}
-            />
-            <FormInput
-                labelValue={password}
-                placeholderText="Senha"
-                onChangeText={(userPassword) => setPassword(userPassword)}
-                secureTextEntry={true}
-            />
-            {validateError === 'WEAK_PASSWORD' && (
-                <Text hasError>{ErrorsSignup[validateError]}</Text>
-            )}
-            <FormButton
-                buttonTitle="Registrar-se"
-                onPress={() => validateSignIn()}
-            />
-            {loading && <Loader loading={loading} />}
-        </Container>
+
+            <Container>
+                <View>
+                    <Label>Email</Label>
+                    <FormInput
+                        labelValue={email}
+                        placeholderText="E-mail"
+                        onChangeText={(userEmail) => setEmail(userEmail)}
+                        keyboardType="email-address"
+                        autoCorrect={false}
+                    />
+                    {validateError === 'EMAIL_IN_USE' ||
+                    validateError === 'INVALID_EMAIL' ? (
+                        <Text hasError>{ErrorsSignup[validateError]}</Text>
+                    ) : null}
+                </View>
+                <View>
+                    <Label>Usuário</Label>
+                    <FormInput
+                        labelValue={username}
+                        placeholderText="Nome"
+                        onChangeText={(user) => setUsername(user)}
+                        autoCorrect={false}
+                        secureTextEntry={false}
+                    />
+                </View>
+
+                <View>
+                    <Label>Senha</Label>
+                    <FormInput
+                        labelValue={password}
+                        placeholderText="Senha"
+                        onChangeText={(userPassword) =>
+                            setPassword(userPassword)
+                        }
+                        secureTextEntry={true}
+                    />
+                    {validateError === 'WEAK_PASSWORD' && (
+                        <Text hasError>{ErrorsSignup[validateError]}</Text>
+                    )}
+                </View>
+                <FormButton
+                    buttonTitle="Criar conta"
+                    onPress={() => validateSignIn()}
+                />
+                {loading && <Loader loading={loading} />}
+            </Container>
+        </>
     );
 }
