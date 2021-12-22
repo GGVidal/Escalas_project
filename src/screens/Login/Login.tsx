@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import FormButton from '../../components/FormButton/FormButton';
+import EyePassword from '../../../assets/EyePassword.svg';
 import FormInput from '../../components/FormInput/FormInput';
 import { AuthContext } from '../../navigation/AuthProvider';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -52,10 +53,10 @@ export default function LoginScreen() {
     };
     return (
         <Container>
+            {/* <EyePassword height={40} width={30} /> */}
             <Text isTitle>Bem-vindo ao app de escalas!</Text>
             <FormInput
                 labelValue={email}
-                placeholderText="E-mail"
                 onChangeText={(userEmail) => setEmail(userEmail)}
                 keyboardType="email-address"
                 autoCorrect={false}
@@ -67,7 +68,6 @@ export default function LoginScreen() {
             ) : null}
             <FormInput
                 labelValue={password}
-                placeholderText="Senha"
                 onChangeText={(userPassword) => setPassword(userPassword)}
                 secureTextEntry={true}
             />

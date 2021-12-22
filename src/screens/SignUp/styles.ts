@@ -8,6 +8,7 @@ import {
 
 export const Container = styled(ContainerDefault)<ViewProps>`
     margin-bottom: 70px;
+    background-color: white;
 `;
 
 export const Text = styled(TextDefault)<IText>`

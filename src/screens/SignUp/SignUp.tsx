@@ -44,14 +44,12 @@ export default function SignupScreen() {
     };
     return (
         <>
-            <Text isTitle>Crie sua conta</Text>
-
+            {/* <Text isTitle>Crie sua conta</Text> */}
             <Container>
                 <View>
                     <Label>Email</Label>
                     <FormInput
                         labelValue={email}
-                        placeholderText="E-mail"
                         onChangeText={(userEmail) => setEmail(userEmail)}
                         keyboardType="email-address"
                         autoCorrect={false}
@@ -65,7 +63,6 @@ export default function SignupScreen() {
                     <Label>Usuário</Label>
                     <FormInput
                         labelValue={username}
-                        placeholderText="Nome"
                         onChangeText={(user) => setUsername(user)}
                         autoCorrect={false}
                         secureTextEntry={false}
@@ -76,7 +73,6 @@ export default function SignupScreen() {
                     <Label>Senha</Label>
                     <FormInput
                         labelValue={password}
-                        placeholderText="Senha"
                         onChangeText={(userPassword) =>
                             setPassword(userPassword)
                         }
