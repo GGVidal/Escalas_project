@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import FormButton from '../../components/FormButton/FormButton';
 import FormInput from '../../components/FormInput/FormInput';
 import { Label } from '../../components/Label/styles';
@@ -44,7 +45,6 @@ export default function SignupScreen() {
     };
     return (
         <>
-            {/* <Text isTitle>Crie sua conta</Text> */}
             <Container>
                 <View>
                     <Label>Email</Label>
@@ -77,6 +77,7 @@ export default function SignupScreen() {
                             setPassword(userPassword)
                         }
                         secureTextEntry={true}
+                        traillingIcon={<Icon name="visibility" size={28} />}
                     />
                     {validateError === 'WEAK_PASSWORD' && (
                         <Text hasError>{ErrorsSignup[validateError]}</Text>

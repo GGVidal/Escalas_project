@@ -1,6 +1,6 @@
-import React from 'react';
-import { KeyboardType } from 'react-native';
-import { TextInput } from './styles';
+import React, { ReactNode } from 'react';
+import { KeyboardType, Pressable } from 'react-native';
+import { TextInput, ContainerInput } from './styles';
 
 type Props = {
     labelValue: string;
@@ -8,6 +8,7 @@ type Props = {
     keyboardType?: KeyboardType;
     autoCorrect?: boolean;
     secureTextEntry?: boolean;
+    traillingIcon?: ReactNode;
 };
 
 export default function FormInput({
@@ -15,18 +16,22 @@ export default function FormInput({
     onChangeText,
     keyboardType,
     autoCorrect,
-    secureTextEntry
+    secureTextEntry,
+    traillingIcon
 }: Props) {
     return (
-        <TextInput
-            value={labelValue}
-            autoCapitalize="none"
-            numberOfLines={1}
-            placeholderTextColor="#666"
-            onChangeText={(text) => onChangeText!(text)}
-            keyboardType={keyboardType}
-            autoCorrect={autoCorrect}
-            secureTextEntry={secureTextEntry}
-        />
+        <ContainerInput>
+            <TextInput
+                value={labelValue}
+                autoCapitalize="none"
+                numberOfLines={1}
+                placeholderTextColor="#666"
+                onChangeText={(text) => onChangeText!(text)}
+                keyboardType={keyboardType}
+                autoCorrect={autoCorrect}
+                secureTextEntry={secureTextEntry}
+            />
+            <Pressable>{traillingIcon}</Pressable>
+        </ContainerInput>
     );
 }
