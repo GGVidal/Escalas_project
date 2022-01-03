@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import FormButton from '../../components/FormButton/FormButton';
 import FormInput from '../../components/FormInput/FormInput';
 import { Label } from '../../components/Label/styles';
@@ -11,6 +11,7 @@ import { RootStack } from '../../navigation/routesTypes';
 import { useNavigation } from '@react-navigation/native';
 import Loader from '../../components/Loader/Loader';
 import { View } from 'react-native';
+import { useTogglePasswordVisibility } from '../../utils/hooks';
 type Props = StackNavigationProp<RootStack, 'Auth'>;
 type ValidationErrors =
     | 'EMAIL_IN_USE'
@@ -19,6 +20,8 @@ type ValidationErrors =
     | null;
 
 export default function SignupScreen() {
+    const { passwordVisibility, rightIcon, handlePasswordVisibility } =
+        useTogglePasswordVisibility();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
@@ -76,8 +79,9 @@ export default function SignupScreen() {
                         onChangeText={(userPassword) =>
                             setPassword(userPassword)
                         }
-                        secureTextEntry={true}
-                        traillingIcon={<Icon name="visibility" size={28} />}
+                        secureTextEntry={passwordVisibility}
+                        traillingIcon={<Icon name={rightIcon} size={28} />}
+                        onPressTraillingIcon={handlePasswordVisibility}
                     />
                     {validateError === 'WEAK_PASSWORD' && (
                         <Text hasError>{ErrorsSignup[validateError]}</Text>

@@ -9,6 +9,7 @@ type Props = {
     autoCorrect?: boolean;
     secureTextEntry?: boolean;
     traillingIcon?: ReactNode;
+    onPressTraillingIcon?: () => void;
 };
 
 export default function FormInput({
@@ -17,7 +18,8 @@ export default function FormInput({
     keyboardType,
     autoCorrect,
     secureTextEntry,
-    traillingIcon
+    traillingIcon,
+    onPressTraillingIcon
 }: Props) {
     return (
         <ContainerInput>
@@ -30,8 +32,11 @@ export default function FormInput({
                 keyboardType={keyboardType}
                 autoCorrect={autoCorrect}
                 secureTextEntry={secureTextEntry}
+                enablesReturnKeyAutomatically
             />
-            <Pressable>{traillingIcon}</Pressable>
+            <Pressable onPress={onPressTraillingIcon}>
+                {traillingIcon}
+            </Pressable>
         </ContainerInput>
     );
 }
