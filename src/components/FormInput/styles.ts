@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { windowHeight, windowWidth } from '../../utils/Dimensions';
+import { windowHeight, windowWidth } from '@utils/Dimensions';
 
 export const TextInput = styled.TextInput`
     width: ${windowWidth / 1.5 + 'px'};

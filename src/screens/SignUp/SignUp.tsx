@@ -1,17 +1,18 @@
 import React, { useState, useContext } from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import FormButton from '../../components/FormButton/FormButton';
-import FormInput from '../../components/FormInput/FormInput';
-import { Label } from '../../components/Label/styles';
-import { ErrorsSignup } from '../../constants/ErrorMessages';
-import { AuthContext } from '../../navigation/AuthProvider';
+import FormButton from '@components/FormButton/FormButton';
+import FormInput from '@components/FormInput/FormInput';
+import { Label } from '@components/Label/styles';
+import { ErrorsSignup } from '@constants/ErrorMessages';
+import { AuthContext } from '@navigation/AuthProvider';
 import { Container, Text } from './styles';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStack } from '../../navigation/routesTypes';
+import { RootStack } from '@navigation/routesTypes';
 import { useNavigation } from '@react-navigation/native';
-import Loader from '../../components/Loader/Loader';
+import Loader from '@components/Loader/Loader';
 import { View } from 'react-native';
-import { useTogglePasswordVisibility } from '../../utils/hooks';
+import { useTogglePasswordVisibility } from '@utils/hooks';
+
 type Props = StackNavigationProp<RootStack, 'Auth'>;
 type ValidationErrors =
     | 'EMAIL_IN_USE'

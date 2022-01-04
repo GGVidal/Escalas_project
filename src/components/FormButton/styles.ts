@@ -1,6 +1,6 @@
 import { TextProps, TouchableOpacityProps } from 'react-native';
 import styled from 'styled-components/native';
-import { windowHeight, windowWidth } from '../../utils/Dimensions';
+import { windowHeight, windowWidth } from '@utils/Dimensions';
 
 export const Container = styled.TouchableOpacity<TouchableOpacityProps>`
     margin-top: 10px;

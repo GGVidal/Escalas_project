@@ -5,7 +5,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import AuthStack from './AuthStack';
 import HomeStack from './HomeStack';
 import { AuthContext } from './AuthProvider';
-import Loader from '../components/Loader/Loader';
 import { RootStack } from './routesTypes';
 const Stack = createStackNavigator<RootStack>();
 export default function Routes() {

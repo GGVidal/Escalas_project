@@ -8,10 +8,10 @@ import {
     ColContainer,
     Text
 } from './styles';
-import FormButton from '../../components/FormButton/FormButton';
-import { AuthContext } from '../../navigation/AuthProvider';
+import FormButton from '@components/FormButton/FormButton';
+import { AuthContext } from '@navigation/AuthProvider';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStack } from '../../navigation/routesTypes';
+import { RootStack } from '@navigation/routesTypes';
 import { useNavigation } from '@react-navigation/native';
 
 type Props = StackNavigationProp<RootStack, 'Auth'>;
