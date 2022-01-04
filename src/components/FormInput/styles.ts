@@ -4,7 +4,7 @@ import { windowHeight, windowWidth } from '../../utils/Dimensions';
 export const TextInput = styled.TextInput`
     width: ${windowWidth / 1.5 + 'px'};
     height: ${windowHeight / 35 + 'px'};
-    font-size: 22px;
+    font-size: 18px;
 `;
 
 export const ContainerInput = styled.View`
