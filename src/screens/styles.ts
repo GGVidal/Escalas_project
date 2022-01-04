@@ -7,7 +7,7 @@ export interface IText extends TextProps {
 }
 
 export const Container = styled.View<ViewProps>`
-    background-color: #f5f5f5;
+    background-color: white;
     flex: 1;
     justify-content: center;
     align-items: center;

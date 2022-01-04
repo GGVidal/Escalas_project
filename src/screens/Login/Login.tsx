@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import FormButton from '../../components/FormButton/FormButton';
-import EyePassword from '../../../assets/EyePassword.svg';
 import FormInput from '../../components/FormInput/FormInput';
 import { AuthContext } from '../../navigation/AuthProvider';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -10,6 +10,9 @@ import { ErrorsLogin } from '../../constants/ErrorMessages';
 import { Container, Text } from './styles';
 import SignUpButton from './components/SignUpButton';
 import Loader from '../../components/Loader/Loader';
+import { View } from 'react-native';
+import { Label } from '../../components/Label/styles';
+import { useTogglePasswordVisibility } from '../../utils/hooks';
 type Props = StackNavigationProp<RootStack, 'Auth'>;
 type ValidationErrors =
     | 'USER_DISABLED'
@@ -19,6 +22,8 @@ type ValidationErrors =
     | null;
 
 export default function LoginScreen() {
+    const { passwordVisibility, rightIcon, handlePasswordVisibility } =
+        useTogglePasswordVisibility();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [validateError, setValidateError] = useState<ValidationErrors>(null);
@@ -53,27 +58,34 @@ export default function LoginScreen() {
     };
     return (
         <Container>
-            {/* <EyePassword height={40} width={30} /> */}
             <Text isTitle>Bem-vindo ao app de escalas!</Text>
-            <FormInput
-                labelValue={email}
-                onChangeText={(userEmail) => setEmail(userEmail)}
-                keyboardType="email-address"
-                autoCorrect={false}
-            />
-            {validateError === 'INVALID_EMAIL' ||
-            validateError === 'USER_DISABLED' ||
-            validateError === 'USER_NOT_FOUND' ? (
-                <Text hasError>{ErrorsLogin[validateError]}</Text>
-            ) : null}
-            <FormInput
-                labelValue={password}
-                onChangeText={(userPassword) => setPassword(userPassword)}
-                secureTextEntry={true}
-            />
-            {validateError === 'WRONG_PASSWORD' && (
-                <Text hasError>{ErrorsLogin[validateError]}</Text>
-            )}
+            <View style={{ marginTop: 45 }}>
+                <Label>Email</Label>
+                <FormInput
+                    labelValue={email}
+                    onChangeText={(userEmail) => setEmail(userEmail)}
+                    keyboardType="email-address"
+                    autoCorrect={false}
+                />
+                {validateError === 'INVALID_EMAIL' ||
+                validateError === 'USER_DISABLED' ||
+                validateError === 'USER_NOT_FOUND' ? (
+                    <Text hasError>{ErrorsLogin[validateError]}</Text>
+                ) : null}
+            </View>
+            <View>
+                <Label>Senha</Label>
+                <FormInput
+                    labelValue={password}
+                    onChangeText={(userPassword) => setPassword(userPassword)}
+                    secureTextEntry={passwordVisibility}
+                    traillingIcon={<Icon name={rightIcon} size={28} />}
+                    onPressTraillingIcon={handlePasswordVisibility}
+                />
+                {validateError === 'WRONG_PASSWORD' && (
+                    <Text hasError>{ErrorsLogin[validateError]}</Text>
+                )}
+            </View>
             <FormButton buttonTitle="Login" onPress={() => validateLogin()} />
             <SignUpButton
                 onPress={() =>
